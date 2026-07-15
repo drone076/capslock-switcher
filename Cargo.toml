@@ -1,0 +1,23 @@
+[package]
+name = "capslock_switcher"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+windows = { version = "0.52.0", features = [
+    "Win32_Foundation",
+    "Win32_UI_WindowsAndMessaging",
+    "Win32_UI_Input_KeyboardAndMouse",
+    "Win32_System_LibraryLoader",
+    "Win32_System_Threading"
+]}
+
+[profile.release]
+opt-level = "z"          # Оптимизация по размеру кода, а не по скорости
+lto = true               # Link-Time Optimization: выкидывает весь неиспользуемый код
+codegen-units = 1        # Делает сборку чуть медленнее, но позволяет LTO работать идеально
+strip = true             # Автоматически удаляет отладочные символы из бинарника
+panic = "abort"          # Убирает тяжелый механизм "раскрутки стека" при панике. 
+                         # Для такой простой утилиты это абсолютно безопасно и экономит ~50-100 КБ.
+[build-dependencies]
+embed-resource = "2.4"
