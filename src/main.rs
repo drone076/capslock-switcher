@@ -27,7 +27,7 @@ fn make_input(vk: VIRTUAL_KEY, flags: KEYBD_EVENT_FLAGS) -> INPUT {
     }
 }
 
-unsafe fn simulate_alt_shift() {
+fn simulate_alt_shift() {
     let inputs = [
         make_input(VK_MENU, KEYBD_EVENT_FLAGS(0)),
         make_input(VK_SHIFT, KEYBD_EVENT_FLAGS(0)),
@@ -47,10 +47,6 @@ unsafe extern "system" fn keyboard_hook(n_code: i32, w_param: WPARAM, l_param: L
         if kb_struct.vkCode == VK_CAPITAL.0 as u32 {
             
             if w_param.0 == WM_KEYDOWN as usize || w_param.0 == WM_SYSKEYDOWN as usize {
-                let is_down = unsafe { (GetKeyState(VK_CAPITAL.0 as i32) as u16 & 0x8000) != 0 };
-                if is_down {
-                    return LRESULT(1);
-                }
 
                 let shift_pressed = unsafe { (GetKeyState(VK_SHIFT.0 as i32) as u16 & 0x8000) != 0 };
 
@@ -85,6 +81,8 @@ fn main() -> windows::core::Result<()> {
         let hook = SetWindowsHookExW(WH_KEYBOARD_LL, Some(keyboard_hook), h_instance, 0)?;
 
         let mut msg = MSG::default();
+
+        PeekMessageW(&mut msg, None, 0, 0, PM_NOREMOVE);
         
         while GetMessageW(&mut msg, None, 0, 0).into() {
             if msg.message == WM_SWITCH_LAYOUT && NEED_SWITCH.swap(false, Ordering::SeqCst) {
