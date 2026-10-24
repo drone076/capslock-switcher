@@ -67,10 +67,18 @@ jobs:
           name: capslock-switcher-exe
           path: dist
 
-      - name: Create GitHub release and upload exe
+      - name: Copy installers into dist
+        run: |
+          cp install.bat dist/install.bat
+          cp uninstall.bat dist/uninstall.bat
+
+      - name: Create GitHub release and upload exe + installers
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/capslock_switcher.exe
+          files: |
+            dist/capslock_switcher.exe
+            dist/install.bat
+            dist/uninstall.bat
           tag_name: ${{ github.ref_name }}
           generate_release_notes: true
         env:
