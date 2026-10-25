@@ -3,7 +3,6 @@
 
 ## 📄 README.en.md (English version)
 
-```markdown
 # ⌨️ Capslock Switcher
 
 **A minimalist utility for Windows 11 that switches keyboard layout with `CapsLock`.**
