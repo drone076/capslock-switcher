@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capslock Switcher — Windows Caps Lock Language Switcher</title>
+
+    <!-- SEO: Primary English keywords -->
+    <meta name="description" content="Capslock Switcher — minimalist Windows 10/11 utility that switches keyboard language with CapsLock. Weighs 150 KB, no tray, no telemetry. Windows caps lock switch language tool.">
+    <meta name="keywords" content="windows caps lock switch language, capslock layout switcher windows, change keyboard language caps lock, windows 11 caps lock language switcher, capslock switcher download, switch language by caps lock, keyboard layout toggle caps lock">
+
+    <link rel="canonical" href="https://drone076.github.io/capslock-switcher/en/">
+    <link rel="alternate" hreflang="ru" href="https://drone076.github.io/capslock-switcher/">
+    <link rel="alternate" hreflang="en" href="https://drone076.github.io/capslock-switcher/en/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Capslock Switcher — Windows Caps Lock Language Switcher">
+    <meta property="og:description" content="Switch keyboard language with CapsLock. Minimalist utility for Windows 10/11.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://drone076.github.io/capslock-switcher/en/">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin: 0 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+
+        /* Language Switcher */
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-switch a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 6px 12px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 20px;
+            transition: all 0.2s;
+        }
+
+        .lang-switch a:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: white;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 1.05rem;
+        }
+
+        /* How to Use Section */
+        .how-to-use {
+            padding: 80px 20px;
+            background: #f9f9f9;
+        }
+
+        .how-to-use h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+        }
+
+        .steps {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-right: 30px;
+            min-width: 60px;
+        }
+
+        .step-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .step-content p {
+            color: #666;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .faq h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+
+        .faq-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+
+        .faq-item p {
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .btn {
+                display: block;
+                margin: 10px auto;
+                max-width: 300px;
+            }
+
+            .btn-secondary {
+                margin-left: 0;
+            }
+
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .step-number {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .lang-switch {
+                position: static;
+                text-align: center;
+                margin: 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Language Switcher -->
+    <div class="lang-switch">
+        <a href="/capslock-switcher/">Русский</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>⌨️ Capslock Switcher</h1>
+            <p class="subtitle">Windows Caps Lock language switcher</p>
+            <p class="description">
+                A minimalist utility for Windows that turns the useless CapsLock key into the most convenient 
+                keyboard language switcher. Switch language by CapsLock — simple, fast, lightweight.
+            </p>
+            <a href="https://github.com/drone076/capslock-switcher/releases/latest" class="btn">
+                ⬇️ Download CapslockSwitcher_Setup.zip
+            </a>
+            <a href="https://github.com/drone076/capslock-switcher" class="btn btn-secondary">
+                GitHub
+            </a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>Why Capslock Switcher?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Instant response</h3>
+                    <p>Keyboard language switches in less than 1 millisecond. No delays.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🪶</div>
+                    <h3>Only 150 KB</h3>
+                    <p>The entire distribution weighs less than one photo. Zero impact on your system.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Works everywhere</h3>
+                    <p>Switches keyboard language in all applications, including Task Manager and system windows.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👻</div>
+                    <h3>Invisible</h3>
+                    <p>No window, no tray icon, no notifications. The program just does its job.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Written in Rust</h3>
+                    <p>Fast, safe, no dependencies. A modern language for modern tasks.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Simple</h3>
+                    <p>Does one thing and does it perfectly. No unnecessary features.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Use Section -->
+    <section class="how-to-use">
+        <div class="container">
+            <h2>How to use</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Download and extract</h3>
+                        <p>Download the <code>CapslockSwitcher_Setup.zip</code> archive and extract it to any folder.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Run install.bat</h3>
+                        <p>Double-click <code>install.bat</code> and confirm the administrator privileges request (UAC).</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Done!</h3>
+                        <p>The program installs and starts automatically. Now press <strong>CapsLock</strong> to switch keyboard language.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2>Frequently asked questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h3>Can I use CapsLock for both switching and uppercase letters?</h3>
+                    <p>Yes! Simply press <strong>CapsLock</strong> to switch language, and <strong>Shift + CapsLock</strong> to enable uppercase mode.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>The program is not visible in the tray. Is this normal?</h3>
+                    <p>Yes, this is intentional. The program works completely in the background and doesn't distract you.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is Windows 10 supported?</h3>
+                    <p>Yes, the program works on Windows 10 and Windows 11.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>How do I uninstall the program?</h3>
+                    <p>Open Settings → Apps → Installed apps, find "Capslock Switcher" and click Uninstall.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Made with ❤️  for those who appreciate minimalism and efficiency</p>
+            <p style="margin-top: 15px;">
+                <a href="https://github.com/drone076/capslock-switcher">GitHub</a> | 
+                <a href="https://github.com/drone076/capslock-switcher/releases">Download</a> | 
+                <a href="https://github.com/drone076/capslock-switcher/issues">Report an issue</a>
+            </p>
+            <p style="margin-top: 15px; opacity: 0.7;">© 2026 Drone, Inc. MIT License</p>
+        </div>
+    </footer>
+
+</body>
+</html>

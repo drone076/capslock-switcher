@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capslock Switcher — Переключение раскладки по CapsLock</title>
+
+    <!-- SEO: Primary Russian keywords -->
+    <meta name="description" content="Capslock Switcher — минималистичная утилита для Windows 10/11. Переключение раскладки по CapsLock одним нажатием. Весит 150 КБ, нет трея, нет телеметрии.">
+    <meta name="keywords" content="переключение раскладки по caps lock, caps lock переключатель раскладки, смена языка по caps lock, capslock switcher windows, переключение языка клавиатуры caps lock, windows caps lock layout switcher, маленькая утилита переключения раскладки">
+
+    <link rel="canonical" href="https://drone076.github.io/capslock-switcher/">
+    <link rel="alternate" hreflang="en" href="https://drone076.github.io/capslock-switcher/en/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Capslock Switcher — Переключение раскладки по CapsLock">
+    <meta property="og:description" content="Переключение раскладки клавиатуры по нажатию CapsLock. Минималистичная утилита для Windows 10/11.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://drone076.github.io/capslock-switcher/">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+            opacity: 0.95;
+        }
+
+        .hero .description {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 40px;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            margin: 0 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+
+        /* Language Switcher */
+        .lang-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .lang-switch a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 6px 12px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 20px;
+            transition: all 0.2s;
+        }
+
+        .lang-switch a:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: white;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .features h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+            color: #333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 30px;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: #667eea;
+        }
+
+        .feature-card p {
+            color: #666;
+            font-size: 1.05rem;
+        }
+
+        /* How to Use Section */
+        .how-to-use {
+            padding: 80px 20px;
+            background: #f9f9f9;
+        }
+
+        .how-to-use h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+        }
+
+        .steps {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .step-number {
+            font-size: 3rem;
+            font-weight: 700;
+            color: #667eea;
+            margin-right: 30px;
+            min-width: 60px;
+        }
+
+        .step-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .step-content p {
+            color: #666;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 80px 20px;
+            background: white;
+        }
+
+        .faq h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 60px;
+        }
+
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+
+        .faq-item h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+
+        .faq-item p {
+            color: #666;
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .btn {
+                display: block;
+                margin: 10px auto;
+                max-width: 300px;
+            }
+
+            .btn-secondary {
+                margin-left: 0;
+            }
+
+            .step {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .step-number {
+                margin-right: 0;
+                margin-bottom: 15px;
+            }
+
+            .lang-switch {
+                position: static;
+                text-align: center;
+                margin: 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Language Switcher -->
+    <div class="lang-switch">
+        <a href="/capslock-switcher/en/">English</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>⌨️ Capslock Switcher</h1>
+            <p class="subtitle">Переключение раскладки по CapsLock</p>
+            <p class="description">
+                Минималистичная утилита для Windows, которая превращает бесполезную клавишу CapsLock 
+                в самый удобный переключатель раскладки. Переключение раскладки по CapsLock — теперь просто и быстро.
+            </p>
+            <a href="https://github.com/drone076/capslock-switcher/releases/latest" class="btn">
+                ⬇️ Скачать CapslockSwitcher_Setup.zip
+            </a>
+            <a href="https://github.com/drone076/capslock-switcher" class="btn btn-secondary">
+                GitHub
+            </a>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features">
+        <div class="container">
+            <h2>Почему Capslock Switcher?</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🚀</div>
+                    <h3>Мгновенная реакция</h3>
+                    <p>Переключение раскладки происходит менее чем за 1 миллисекунду. Никаких задержек.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🪶</div>
+                    <h3>Всего 150 КБ</h3>
+                    <p>Весь дистрибутив весит меньше, чем одна фотография. Нулевое влияние на систему.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Работает везде</h3>
+                    <p>Переключает раскладку во всех приложениях, включая Диспетчер задач и системные окна.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">👻</div>
+                    <h3>Невидимый</h3>
+                    <p>Нет окна, нет иконки в трее, нет уведомлений. Программа просто делает свою работу.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Написан на Rust</h3>
+                    <p>Быстрый, безопасный, без зависимостей. Современный язык для современных задач.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Простой</h3>
+                    <p>Делает одну вещь и делает её идеально. Никаких лишних функций.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How to Use Section -->
+    <section class="how-to-use">
+        <div class="container">
+            <h2>Как использовать</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Скачайте и распакуйте</h3>
+                        <p>Скачайте архив <code>CapslockSwitcher_Setup.zip</code> и распакуйте его в любую папку.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Запустите install.bat</h3>
+                        <p>Дважды кликните по файлу <code>install.bat</code> и подтвердите запрос прав администратора.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Готово!</h3>
+                        <p>Программа установится и запустится автоматически. Теперь нажимайте <strong>CapsLock</strong> для переключения раскладки.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2>Частые вопросы</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h3>Можно ли использовать CapsLock и для переключения, и для заглавных букв?</h3>
+                    <p>Да! Просто <strong>CapsLock</strong> переключает раскладку, а <strong>Shift + CapsLock</strong> включает режим заглавных букв.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Программа не видна в трее. Это нормально?</h3>
+                    <p>Да, это сделано намеренно. Программа работает полностью в фоне и не отвлекает внимание.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Поддерживается ли Windows 10?</h3>
+                    <p>Да, программа работает на Windows 10 и Windows 11.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Как удалить программу?</h3>
+                    <p>Откройте "Параметры" → "Приложения" → "Установленные приложения", найдите "Capslock Switcher" и нажмите "Удалить".</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Сделано с ❤️  для тех, кто ценит минимализм и эффективность</p>
+            <p style="margin-top: 15px;">
+                <a href="https://github.com/drone076/capslock-switcher">GitHub</a> | 
+                <a href="https://github.com/drone076/capslock-switcher/releases">Скачать</a> | 
+                <a href="https://github.com/drone076/capslock-switcher/issues">Сообщить о проблеме</a>
+            </p>
+            <p style="margin-top: 15px; opacity: 0.7;">© 2026 Drone, Inc. Лицензия MIT</p>
+        </div>
+    </footer>
+
+</body>
+</html>
