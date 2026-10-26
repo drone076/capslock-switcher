@@ -10,43 +10,32 @@ permissions:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     outputs:
       exe-path: dist/capslock_switcher.exe
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Install Rust (stable + Windows target)
+      - name: Install Rust (stable, MSVC target)
         uses: dtolnay/rust-toolchain@stable
         with:
-          targets: x86_64-pc-windows-gnu
-
-      - name: Install mingw-w64 (linker + windres for .rc embedding)
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y mingw-w64 zip
-
-      - name: Configure Cargo linker for Windows target
-        run: |
-          mkdir -p .cargo
-          cat > .cargo/config.toml <<'EOF'
-          [target.x86_64-pc-windows-gnu]
-          linker = "x86_64-w64-mingw32-gcc"
-          EOF
+          targets: x86_64-pc-windows-msvc
 
       - name: Build release binary
-        run: cargo build --release --target x86_64-pc-windows-gnu
-
-      - name: Strip binary (reduce size)
-        run: x86_64-w64-mingw32-strip target/x86_64-pc-windows-gnu/release/capslock_switcher.exe
+        shell: bash
+        env:
+          RUSTFLAGS: -C target-feature=+crt-static
+        run: cargo build --release --target x86_64-pc-windows-msvc
 
       - name: Prepare dist directory
+        shell: bash
         run: |
           mkdir -p dist
-          cp target/x86_64-pc-windows-gnu/release/capslock_switcher.exe dist/capslock_switcher.exe
+          cp target/x86_64-pc-windows-msvc/release/capslock_switcher.exe dist/capslock_switcher.exe
 
       - name: Show binary size
+        shell: bash
         run: ls -lh dist/capslock_switcher.exe
 
       - name: Upload exe as workflow artifact
