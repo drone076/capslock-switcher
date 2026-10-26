@@ -26,7 +26,7 @@ schtasks /Create /TN "CapslockSwitcher" /TR "\"%TARGET_DIR%\capslock_switcher.ex
 
 echo [3/5] Регистрация в "Программы и компоненты"...
 set "APP_NAME=Capslock Switcher"
-set "APP_VERSION=0.1.0"
+set "APP_VERSION=0.2.0"
 set "APP_PUBLISHER=Drone, Inc"
 set "APP_URL=https://github.com/drone076/capslock-switcher"
 set "UNINSTALL_STRING=cmd /c \"%TARGET_DIR%\uninstall.bat\""

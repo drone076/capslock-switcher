@@ -1,6 +1,7 @@
 #![windows_subsystem = "windows"]
 
 use std::sync::atomic::{AtomicBool, Ordering};
+use windows::core::w;
 use windows::Win32::Foundation::*;
 use windows::Win32::System::LibraryLoader::*;
 use windows::Win32::System::Threading::*;
@@ -77,6 +78,15 @@ unsafe extern "system" fn keyboard_hook(n_code: i32, w_param: WPARAM, l_param: L
 
 fn main() -> windows::core::Result<()> {
     unsafe {
+        let _instance_guard = CreateMutexW(None, true, w!("Global\\CapslockSwitcher"))?;
+        let already_running = match GetLastError() {
+            Err(err) => err.code() == ERROR_ALREADY_EXISTS.to_hresult(),
+            Ok(()) => false,
+        };
+        if already_running {
+            return Ok(());
+        }
+
         let h_instance = GetModuleHandleW(None)?;
         let hook = SetWindowsHookExW(WH_KEYBOARD_LL, Some(keyboard_hook), h_instance, 0)?;
 
