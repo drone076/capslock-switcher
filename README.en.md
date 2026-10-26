@@ -10,7 +10,7 @@
 [![Rust](https://img.shields.io/badge/Rust-1.70+-000000?style=flat-square&logo=rust&logoColor=white)](https://www.rust-lang.org/)
 [![Windows](https://img.shields.io/badge/Windows-10/11-0078D6?style=flat-square&logo=windows&logoColor=white)](https://www.microsoft.com/windows)
 [![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
-[![Size](https://img.shields.io/badge/Size-~240KB-blue?style=flat-square)](https://github.com/drone076/capslock-switcher/releases)
+[![Size](https://img.shields.io/badge/Size-~210KB-blue?style=flat-square)](https://github.com/drone076/capslock-switcher/releases)
 [![Stars](https://img.shields.io/github/stars/drone076/capslock-switcher?style=social)](https://github.com/drone076/capslock-switcher/stargazers)
 
 [Русская версия](README.md)
@@ -46,7 +46,7 @@ Yet it's the perfect place for a layout switcher!
 
 **Capslock Switcher** turns the useless `CapsLock` key into the most convenient layout switcher you've ever had.
 
-- ✅ **Only ~240 KB** (ZIP archive ~130 KB)
+- ✅ **Only ~210 KB** (ZIP archive ~115 KB)
 - ✅ **Written in Rust** — fast, safe, no dependencies
 - ✅ **Works everywhere** — in all applications, including system windows
 - ✅ **Invisible** — no window, no tray icon, no notifications

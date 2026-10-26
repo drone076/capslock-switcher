@@ -99,7 +99,7 @@ A: Open Task Manager (Ctrl+Shift+Esc), go to the "Details" tab, and find
 
 TECHNICAL INFORMATION
 ---------------------
-Program size: ~240 KB
+Program size: ~210 KB
 Memory usage: ~2 MB
 CPU usage: 0%
 Programming language: Rust

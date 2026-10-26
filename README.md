@@ -5,7 +5,7 @@
 [![Rust](https://img.shields.io/badge/Rust-1.70+-000000?style=flat-square&logo=rust&logoColor=white)](https://www.rust-lang.org/)
 [![Windows](https://img.shields.io/badge/Windows-10/11-0078D6?style=flat-square&logo=windows&logoColor=white)](https://www.microsoft.com/windows)
 [![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
-[![Size](https://img.shields.io/badge/Size-~240KB-blue?style=flat-square)](https://github.com/drone076/capslock-switcher/releases)
+[![Size](https://img.shields.io/badge/Size-~210KB-blue?style=flat-square)](https://github.com/drone076/capslock-switcher/releases)
 [![Stars](https://img.shields.io/github/stars/drone076/capslock-switcher?style=social)](https://github.com/drone076/capslock-switcher/stargazers)
 
 [English version](README.en.md)
@@ -41,7 +41,7 @@
 
 **Capslock Switcher** превращает бесполезную клавишу `CapsLock` в самый удобный переключатель раскладки.
 
-- ✅ **Весит ~240 КБ** (ZIP-архив ~130 КБ)
+- ✅ **Весит ~210 КБ** (ZIP-архив ~115 КБ)
 - ✅ **Написан на Rust** — быстрый, безопасный, без зависимостей
 - ✅ **Работает везде** — во всех приложениях, включая системные окна
 - ✅ **Невидимый** — нет окна, нет иконки в трее, нет уведомлений
