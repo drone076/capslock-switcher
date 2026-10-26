@@ -88,9 +88,11 @@ If you prefer to control everything manually:
 
 ## 📖 How to use
 
-Simply press `CapsLock` instead of `Alt+Shift` or `Ctrl+Shift` to switch the layout.
+Simply press `CapsLock` instead of your Windows layout shortcut — `Alt+Shift`, `Ctrl+Shift`, or `Win+Space`. The utility detects the configured shortcut automatically.
 
-**Important:** After installing the program, the `CapsLock` key no longer enables uppercase mode. If you need to type something in uppercase, use `Shift` + the desired keys.
+**Important:** After installing the program, the `CapsLock` key no longer enables uppercase mode. If you need to type something in uppercase, use `Shift` + the desired keys (or `Shift+CapsLock`).
+
+If you change the shortcut in Windows settings, restart the utility.
 
 ---
 
@@ -108,7 +110,7 @@ Yes, this is intentional. The program works completely in the background, consum
 Yes, the program works on Windows 10 and Windows 11.
 
 ### Can I use CapsLock for both switching and uppercase letters?
-Currently — no. The program completely replaces the `CapsLock` functionality. But if you need to type something in uppercase, use `Shift` + the desired keys.
+Yes. A normal `CapsLock` press switches the layout, while `Shift+CapsLock` enables uppercase mode.
 
 ---
 

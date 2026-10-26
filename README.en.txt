@@ -15,6 +15,8 @@ HOW DOES IT WORK?
 -----------------
 - Press CapsLock → switches layout (RU ↔ EN)
 - Shift + CapsLock → toggles uppercase mode (regular CapsLock)
+- Automatically uses your Windows shortcut: Alt+Shift, Ctrl+Shift, Win+Space,
+  or the grave accent key (`)
 
 The program runs completely in the background, is invisible, consumes no
 resources, and doesn't show any windows or tray icons.
@@ -37,6 +39,9 @@ What happens during installation:
 USAGE
 -----
 Simply press CapsLock to switch the layout.
+
+The program automatically detects the layout shortcut configured in Windows.
+If you change that setting, restart the program.
 
 If you need to type text in uppercase:
 - Hold Shift and press the desired letters
